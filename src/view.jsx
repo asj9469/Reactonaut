@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import backgroundImage from './images/stars.gif';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from "react-live";
 import App from './App';
 
@@ -48,6 +49,7 @@ import App from './App';
 //   );
 // };
 
+
 export const ViewContainerRoot = styled.div`
   position: relative;
   display: flex;
@@ -56,7 +58,13 @@ export const ViewContainerRoot = styled.div`
   align-items: center;
   padding: 15px 110px 15px 35px;
   box-sizing: border-box;
-  background-color: #121214;
+  // background-color: #121214;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100vh;
 `;
 
 export const HeaderContainer = styled.div`
