@@ -21,16 +21,16 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 
 ## Benefits
 
-General
+### General
 - Get quick help from AI
 - Focus more on efficient coding
 - Save time from searching, switching tabs, etc.
 
-New Developers
+### New Developers
 - Easily start messing around with the code
 - Learn from AI-implemented code
 
-Experienced Developers
+### Experienced Developers
 - Let the AI do the simple tasks
 - Spend more time on the bigger concept
 
