@@ -274,12 +274,11 @@ function App() {
             <TabPanel value={value} index={0}>
               <LivePreviewContainer>
                   <LivePreview />
+                  <LiveError />
               </LivePreviewContainer>
-              <LiveError />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <ChatBoxContainer>
-            {/* <Box display="flex" flexDirection="column" height={chatboxHeight} border={1} borderColor="grey.300" overflow="auto"> */}
+            <ChatBoxContainer>
               <Box flexGrow={1} p={1} overflow="auto" style={{maxHeight: "calc(100% - 56px)" }} ref={chatHistoryRef}>
                 {messages.map((message, index) => (
                   <div key={index} style={{ marginBottom: "0.5rem" }}>

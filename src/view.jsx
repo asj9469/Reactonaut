@@ -4,52 +4,6 @@ import backgroundImage from './images/stars.gif';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from "react-live";
 import App from './App';
 
-// export const ViewContainerRoot1 = ({}) => {
-//   return (
-//     <ViewContainerRoot>
-//       <HeaderContainer>
-//         <LogoContainer>
-//           <LogoText>Reactonauts</LogoText>
-//           <LogoImage src="https://file.rendit.io/n/45hcMBJKBqDxVfYlovlB.png" />
-//         </LogoContainer>
-//         <LiveCodeContainer>
-//           <LiveProvider code={code} scope={{ 
-//               React, 
-//               useState, 
-//               useEffect, 
-//               AppBar, 
-//               Box, 
-//               TextField, 
-//               Toolbar, 
-//               IconButton, 
-//               Typography, 
-//               Button, 
-//               Grid, 
-//               Container,
-//               Drawer, List, ListItem, ListItemText,
-//               styled 
-//             }}
-//           >
-//             <FirstRectangle>
-//               <LiveEditor onChange={setCode} style={liveComponentStyle} />
-//             </FirstRectangle>
-//           </LiveProvider>
-//           <SecondRectangle />
-//           <ThirdRectangle />
-//           <FileNameContainer>filename.js</FileNameContainer>
-//         </LiveCodeContainer>
-//       </HeaderContainer>
-//       <PreviewSectionContainer>
-//         <SecondRectangle />
-//         <ThirdRectangle />
-//         <PreviewTitle>Preview</PreviewTitle>
-//         <FileNameContainer>ChatGPT</FileNameContainer>
-//       </PreviewSectionContainer>
-//     </ViewContainerRoot>
-//   );
-// };
-
-
 export const ViewContainerRoot = styled.div`
   position: relative;
   display: flex;
@@ -107,6 +61,7 @@ export const LogoImage = styled.img`
 `;
 
 export const CodeEditorRectangle = styled.div`
+  height: 80%;
   width: 89.66%;
   position: relative;
   display: flex;
@@ -172,10 +127,24 @@ overflow: auto;
     background-color: #292c2f;
   `;
 
+export const PreviewSectionContainer = styled.div`
+  height: 80vh;
+  width: 54.77%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background-color: #202123;
+`;
+
 export const LivePreviewContainer = styled.div`
 width: 100%;
 position: relative;
-height: 705px; /* adjust this value as needed */
+height: 100%;
+// height: 705px; /* adjust this value as needed */
 box-sizing: border-box;
 overflow: auto;
 `;
@@ -188,32 +157,6 @@ export const TabContainer = styled.div`
   top: 0px;
   box-sizing: border-box;
 `;
-
-export const ChatInputStyle = {
-  outline: 'none',
-  paddingLeft: '15px',
-  height: "35px",
-  width: "70%",
-  backgroundColor: "#292c2f",
-  borderRadius: "4px",
-  fontSize: "16px",
-  color: "white",
-  fontFamily: "Inter",
-}
-
-export const PreviewSectionContainer = styled.div`
-  height: 800px;
-  width: 54.77%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-radius: 12px;
-  box-sizing: border-box;
-  background-color: #202123;
-`;
-
   
 export const ChatBoxContainer = styled.div`
   height: 700px;
@@ -228,6 +171,19 @@ export const ChatBoxContainer = styled.div`
   background-color: #202123;
   overflow: auto;
 `;
+
+export const ChatInputStyle = {
+  outline: 'none',
+  paddingLeft: '15px',
+  height: "35px",
+  width: "70%",
+  backgroundColor: "#292c2f",
+  borderRadius: "4px",
+  fontSize: "16px",
+  color: "white",
+  fontFamily: "Inter",
+}
+
 
 // export const PreviewTitle = styled.div`
 //   width: 75px;
