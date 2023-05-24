@@ -41,7 +41,7 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 | Mostly for New Devs | Both New & Experienced |
 | Mostly for Front-End | Both Front & Back-End |
 
-## Future Potential
+## Potential Implementations
 
 - Improve AI assistant speed
 - Implement prompt enhancing feature
