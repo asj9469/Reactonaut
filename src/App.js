@@ -12,8 +12,8 @@ import TabPanel from './Tabs';
 import a11yProps from './Tabs';
 
 //import styled components from view
-import { ChatBoxContainer, TabContainer, ViewContainerRoot } from "./view";
-import { HeaderContainer } from './view';
+import { ChatBoxContainer, HeaderContainer2, TabContainer, ViewContainerRoot } from "./view";
+import { HeaderContainer} from './view';
 import { LogoContainer } from './view';
 import { LogoText } from './view';
 import { LogoImage } from './view';
@@ -119,17 +119,26 @@ function App() {
     }));
   };
 
+  // const configuration = new Configuration({
+  //   apiKey: API_KEY,
+  //   basePath: "https://api.pawan.krd/v1",
+  // });
+
+  // const openai = new OpenAIApi(configuration);
+
   const callChatGptApi = async (prompt) => {
     try {
+
       const formattedPrompt = `I am using react-live with AceEditor to build a web application. My current code is:\n${code}\n\nUser: ${prompt}\n\nChatGPT, please provide me the code to achieve this, answer with full code:`;
 
-      const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+      const response = await fetch('https://api.pawan.krd/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
+          model: "gpt-3.5-turbo",
           prompt: formattedPrompt,
           max_tokens: 2000,
           n: 1,
@@ -140,6 +149,24 @@ function App() {
           presence_penalty: 0,
         }),
       });
+      
+      // const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${API_KEY}`,
+      //   },
+      //   body: JSON.stringify({
+      //     prompt: formattedPrompt,
+      //     max_tokens: 2000,
+      //     n: 1,
+      //     stop: null,
+      //     temperature: 0.5,
+      //     top_p: 1,
+      //     frequency_penalty: 0,
+      //     presence_penalty: 0,
+      //   }),
+      // });
 
       const data = await response.json();
 
@@ -190,10 +217,11 @@ function App() {
         <CodeEditorRectangle>
             <FirstRectangle>
             <LiveCodeContainer style={{
-                height: '672px',
+                height: '76vh',
                 width: '100%',
                 position: 'relative', // Add this style to enable position adjustment
                 top: '20px', // Adjust the top position as needed
+                borderRadius: '12px',
               }}>
             <AceEditor
                 name="code-editor"
@@ -230,7 +258,8 @@ function App() {
           </FileNameContainer>
         </CodeEditorRectangle>
       </HeaderContainer>
-    <LiveProvider code={code} scope={{
+      <HeaderContainer2>
+      <LiveProvider code={code} scope={{
               React,
               useState,
               useEffect,
@@ -272,7 +301,7 @@ function App() {
               </TabContainer>
                 
             <TabPanel value={value} index={0}>
-              <LivePreviewContainer>
+              <LivePreviewContainer >
                   <LivePreview />
                   <LiveError />
               </LivePreviewContainer>
@@ -281,7 +310,7 @@ function App() {
             <ChatBoxContainer>
               <Box flexGrow={1} p={1} overflow="auto" style={{maxHeight: "calc(100% - 56px)" }} ref={chatHistoryRef}>
                 {messages.map((message, index) => (
-                  <div key={index} style={{ marginBottom: "0.5rem" }}>
+                  <div key={message.id} style={{ marginBottom: "0.5rem" }}>
                     <strong>{message.sender}:</strong>
                     {message.sender !== "ChatGPT" && message.text}
                     {message.sender === "ChatGPT" && (
@@ -366,6 +395,8 @@ function App() {
             </TabPanel>
             </PreviewSectionContainer>
       </LiveProvider>
+      </HeaderContainer2>
+    
       
     </ViewContainerRoot>
     </div>

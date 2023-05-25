@@ -61,7 +61,7 @@ export const LogoImage = styled.img`
 `;
 
 export const CodeEditorRectangle = styled.div`
-  height: 80%;
+  height: 80vh;
   width: 89.66%;
   position: relative;
   display: flex;
@@ -73,13 +73,11 @@ export const CodeEditorRectangle = styled.div`
   box-sizing: border-box;
 `;
 export const LiveCodeContainer = styled.div`
-width: 100%;
-position: relative;
-top: 30px,
-height: 672; /* adjust this value as needed */
-// border-radius: 12px;
-// padding: 30px 0px 0px 0px;
-overflow: auto;
+  width: 100%;
+  position: relative;
+  top: 30px,
+  height: 672; /* adjust this value as needed */
+  overflow: auto;
 `;
 
  export const FileNameContainer = styled.div`
@@ -127,9 +125,21 @@ overflow: auto;
     background-color: #292c2f;
   `;
 
+export const HeaderContainer2 = styled.div`
+  width: 54.77%;
+  position: relative;
+  top: 101px;
+  bottom: 101px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+`;
 export const PreviewSectionContainer = styled.div`
   height: 80vh;
-  width: 54.77%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -141,12 +151,13 @@ export const PreviewSectionContainer = styled.div`
 `;
 
 export const LivePreviewContainer = styled.div`
-width: 100%;
-position: relative;
-height: 100%;
-// height: 705px; /* adjust this value as needed */
-box-sizing: border-box;
-overflow: auto;
+  position: absolute;
+  top: 70px;
+  bottom: 20px;
+  left: 20px;
+  right:20px;
+  box-sizing: border-box;
+  overflow: auto;
 `;
 
 export const TabContainer = styled.div`
@@ -159,14 +170,13 @@ export const TabContainer = styled.div`
 `;
   
 export const ChatBoxContainer = styled.div`
-  height: 700px;
+  height: 70vh;
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
   box-sizing: border-box;
   background-color: #202123;
   overflow: auto;
@@ -183,16 +193,3 @@ export const ChatInputStyle = {
   color: "white",
   fontFamily: "Inter",
 }
-
-
-// export const PreviewTitle = styled.div`
-//   width: 75px;
-//   height: 24px;
-//   left: 18.320770263671875px;
-//   top: 11px;
-//   position: absolute;
-//   color: #ffffff;
-//   font-size: 20px;
-//   font-family: Inter;
-//   box-sizing: border-box;
-// `;
