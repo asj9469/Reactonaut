@@ -6,7 +6,7 @@ Reactonaut was created to reduce the "coding language barrier" and allow new fro
 Reactonaut also helps developers allocate more time to bigger ideas, such as UI layouts, overall theme, and functionality, rather than spending time struggling over design tasks.
 
 
-## Demo
+## Demo [![image](https://img.shields.io/badge/Try_Reactonaut-000000?style=for-the-badge&logo=react&logoColor=61DAFB)](reactonaut.vercel.app)
 ### ChatGPT Integration - easily apply and view AI implemented code
 <img src="readme_source/apply_showCode.gif" width="800px">
 
