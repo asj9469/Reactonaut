@@ -118,27 +118,20 @@ function App() {
       }
     }));
   };
-
-  // const configuration = new Configuration({
-  //   apiKey: API_KEY,
-  //   basePath: "https://api.pawan.krd/v1",
-  // });
-
-  // const openai = new OpenAIApi(configuration);
-
-  const callChatGptApi = async (prompt) => {
+ 
+  async function callChatGptApi(prompt){
+  // const callChatGptApi = async (prompt) => {
     try {
-
       const formattedPrompt = `I am using react-live with AceEditor to build a web application. My current code is:\n${code}\n\nUser: ${prompt}\n\nChatGPT, please provide me the code to achieve this, answer with full code:`;
 
-      const response = await fetch('https://api.pawan.krd/v1/chat/completions', {
+      const response = await fetch('https://api.pawan.krd/v1/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`,
+          'Authorization': 'Bearer ' + API_KEY
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
+          model: "text-davinci-003",
           prompt: formattedPrompt,
           max_tokens: 2000,
           n: 1,
@@ -149,31 +142,15 @@ function App() {
           presence_penalty: 0,
         }),
       });
-      
-      // const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${API_KEY}`,
-      //   },
-      //   body: JSON.stringify({
-      //     prompt: formattedPrompt,
-      //     max_tokens: 2000,
-      //     n: 1,
-      //     stop: null,
-      //     temperature: 0.5,
-      //     top_p: 1,
-      //     frequency_penalty: 0,
-      //     presence_penalty: 0,
-      //   }),
-      // });
-
+    
       const data = await response.json();
-
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      
       if (data.choices && data.choices.length > 0) {
         const chatGptResponse = data.choices[0].text.trim();
-        setMessages(prevMessages => [...prevMessages, { sender: 'ChatGPT', text: " " + chatGptResponse, showFullResponse: false }]);
+        setMessages(prevMessages => [...prevMessages, { sender: 'ChatGPT', text: chatGptResponse, showFullResponse: false }]);
+        setIsWaitingForResponse(false);
+      } else {
+        console.error('Error calling ChatGPT API: invalid response format');
         setIsWaitingForResponse(false);
       }
     } catch (error) {

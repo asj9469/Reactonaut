@@ -19,38 +19,23 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 - OpenAI's ChatGPT API integration for code suggestions
 - Interactive chat interface for seamless communication with ChatGPT
 
-## Benefits
-
-**General**
-- Get quick help from AI
-- Focus more on efficient coding
-- Save time from searching, switching tabs, etc.
-
-**New Developers**
-- Easily start messing around with the code
-- Learn from AI-implemented code
-
-**Experienced Developers**
-- Let the AI do the simple tasks
-- Spend more time on the bigger concept
-
-## Potential Target Users
+## Target Users
 | Current | Future |
 | -------- | ------- |
 | JS/React Developers | All Develepers|
 | Mostly for New Devs | Both New & Experienced |
 | Mostly for Front-End | Both Front & Back-End |
 
-## Potential Implementations
+## Future Plans
 
 - Improve AI assistant speed
 - Implement prompt enhancing feature
 - Implement file access feature (work on files stored locally or on cloud)
 - Implement a more advanced editor
 - Allow more languages (back-end)
-- Implement Open AI's CodeX
+- Implement Open AI's CodeX for code analysis & optimization
 
 ## Credits
-The initial backend was produced by [admineral](https://github.com/admineral).
+The initial backend structure has been produced by [admineral](https://github.com/admineral) (the ChatGPT integration code is now modified in this version).
 
 After our collaboration in an [AI Startup Hackathon](https://lablab.ai/event/ai-startup-hackathon-episode-3/reactonauts/reactonaut-ai-code-editor), Reactonaut was separated from his original project [Reactor](https://github.com/admineral/Reactor) with a new UI and is being developed as a stand-alone project.
