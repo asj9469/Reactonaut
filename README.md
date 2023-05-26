@@ -36,6 +36,6 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 - Implement Open AI's CodeX for code analysis & optimization
 
 ## Credits
-The initial backend structure has been produced by [admineral](https://github.com/admineral) (the ChatGPT integration code is now modified in this version).
+The initial backend structure has been produced by [admineral](https://github.com/admineral).
 
 After our collaboration in an [AI Startup Hackathon](https://lablab.ai/event/ai-startup-hackathon-episode-3/reactonauts/reactonaut-ai-code-editor), Reactonaut was separated from his original project [Reactor](https://github.com/admineral/Reactor) with a new UI and is being developed as a stand-alone project.
