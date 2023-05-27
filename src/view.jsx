@@ -1,8 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import backgroundImage from './images/stars.gif';
-import { LiveProvider, LiveEditor, LivePreview, LiveError } from "react-live";
-import App from './App';
 
 export const ViewContainerRoot = styled.div`
   position: relative;
@@ -97,7 +94,7 @@ export const LiveCodeContainer = styled.div`
 
   export const FirstRectangle = styled.div`
     width: 99.84%;
-    height: 692px;
+    height: 75vh;
     left: 1px;
     top: 30px;
     position: absolute;
@@ -137,6 +134,16 @@ export const HeaderContainer2 = styled.div`
   align-items: flex-start;
   box-sizing: border-box;
 `;
+
+export const TabContainer = styled.div`
+  position: relative;
+  font-size: 20px;
+  font-family: Inter;
+  left: 0px;
+  top: 0px;
+  box-sizing: border-box;
+`;
+
 export const PreviewSectionContainer = styled.div`
   height: 80vh;
   width: 100%;
@@ -160,17 +167,8 @@ export const LivePreviewContainer = styled.div`
   overflow: auto;
 `;
 
-export const TabContainer = styled.div`
-  position: relative;
-  font-size: 20px;
-  font-family: Inter;
-  left: 0px;
-  top: 0px;
-  box-sizing: border-box;
-`;
-  
 export const ChatBoxContainer = styled.div`
-  height: 70vh;
+  height: calc(80vh - 6rem);
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -181,6 +179,25 @@ export const ChatBoxContainer = styled.div`
   background-color: #202123;
   overflow: auto;
 `;
+
+export const ChatBox = styled.div`
+  max-height: calc(100% - 90px);
+  flex-grow: 1;
+  padding: 1px;
+  overflow: auto;
+`;
+
+export const ChatInputBox = styled.div`
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+`
 
 export const ChatInputStyle = {
   outline: 'none',

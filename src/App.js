@@ -5,14 +5,14 @@ import 'ace-builds/src-noconflict/theme-twilight';
 import { LiveProvider, LivePreview, LiveError } from "react-live";
 import { AppBar, Box, TextField, Toolbar, IconButton, Typography, Button, Grid, Container } from "@mui/material";
 import { Drawer, List, ListItem, ListItemText} from '@mui/material';
-import { Input, Tab, Tabs, TabList} from '@mui/material';
+import { Input, Tab, Tabs} from '@mui/material';
 import styled from 'styled-components';
 import './App.css'
 import TabPanel from './Tabs';
 import a11yProps from './Tabs';
 
 //import styled components from view
-import { ChatBoxContainer, HeaderContainer2, TabContainer, ViewContainerRoot } from "./view";
+import { ChatBox, ChatBoxContainer, ChatInputBox, HeaderContainer2, TabContainer, ViewContainerRoot } from "./view";
 import { HeaderContainer} from './view';
 import { LogoContainer } from './view';
 import { LogoText } from './view';
@@ -81,11 +81,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
   const [previousCode, setPreviousCode] = useState("");
-  const [editorWidth, setEditorWidth] = useState('50%');
-  const [showFullResponse, setShowFullResponse] = useState(false);
   const chatHistoryRef = React.useRef(null);
-  const windowHeight = window.innerHeight;
-  const chatboxHeight = 700;
 
   //setup tabs for preview pane + Chat GPT screen
   const [value, setValue] = React.useState(0);
@@ -167,11 +163,6 @@ function App() {
     await callChatGptApi(chatInput);
     
   };
-
-  const liveComponentStyle = {
-    height: '100%',
-    overflow: 'auto',
-  };
   
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -194,10 +185,20 @@ function App() {
         <CodeEditorRectangle>
             <FirstRectangle>
             <LiveCodeContainer style={{
+                // height: '76vh',
+                // width: '100%',
+                // position: 'relative', // Add this style to enable position adjustment
+                // top: '20px', // Adjust the top position as needed
+                // borderRadius: '12px',
+                
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
                 height: '76vh',
                 width: '100%',
-                position: 'relative', // Add this style to enable position adjustment
-                top: '20px', // Adjust the top position as needed
+                marginTop: '20px',
                 borderRadius: '12px',
               }}>
             <AceEditor
@@ -227,7 +228,6 @@ function App() {
               </LiveCodeContainer>
                           
             </FirstRectangle>
-          {/* </LiveProvider> */}
           <SecondRectangle />
           <ThirdRectangle />
           <FileNameContainer>
@@ -285,7 +285,7 @@ function App() {
             </TabPanel>
             <TabPanel value={value} index={1}>
             <ChatBoxContainer>
-              <Box flexGrow={1} p={1} overflow="auto" style={{maxHeight: "calc(100% - 56px)" }} ref={chatHistoryRef}>
+              <ChatBox ref={chatHistoryRef}>
                 {messages.map((message, index) => (
                   <div key={message.id} style={{ marginBottom: "0.5rem" }}>
                     <strong>{message.sender}:</strong>
@@ -324,50 +324,48 @@ function App() {
                     <strong>ChatGPT:</strong> thinking...
                   </div>
                 )}
-              </Box>
+              </ChatBox>
               
-          <form onSubmit={handleChatSubmit}>
-            <Box p={1} style={{ display: 'flex', justifyContent: 'center', placeItems: 'center'}}>
-              <Button
-                  style={{ padding: 0,
-                    border: 'none',
-                    background: 'none',
-                    cursor: 'pointer', }}
-                  onClick={revertCode}
-                >
-                  <img src="https://file.rendit.io/n/mNo3dAabgi5Ose8Uy7Ob.png"
-                    alt="Undo Image"
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                    }}/>
-                </Button>
-
-              <input 
-                type="text"
-                placeholder="Type a message (ex: make button bigger)"
-                style={ChatInputStyle} 
-                value={chatInput} 
-                onChange={(e) => setChatInput(e.target.value)} />
-
-              
-              <Button type="submit"  style={{
-                      padding: 0,
-                      border: 'none',
-                      background: 'none',
-                      cursor: 'pointer',
-                    }}>
-                      <img src="https://file.rendit.io/n/q5Axl43rqp5SyWyIcZJ1.png"
-                        alt="Send Image"
+              <form onSubmit={handleChatSubmit}>
+                <ChatInputBox>
+                  <Button
+                      style={{ padding: 0,
+                        border: 'none',
+                        background: 'none',
+                        cursor: 'pointer', }}
+                      onClick={revertCode}
+                    >
+                      <img src="https://file.rendit.io/n/mNo3dAabgi5Ose8Uy7Ob.png"
+                        alt="Undo"
                         style={{
                           height: '25px',
                           width: '25px',
-                        }}
-                      />
-              </Button>
-              
-            </Box>
-          </form>
+                        }}/>
+                  </Button>
+
+                  <input 
+                    type="text"
+                    placeholder="Type a message (ex: make button bigger)"
+                    style={ChatInputStyle} 
+                    value={chatInput} 
+                    onChange={(e) => setChatInput(e.target.value)} />
+
+                  <Button type="submit"  style={{
+                          padding: 0,
+                          border: 'none',
+                          background: 'none',
+                          cursor: 'pointer',
+                        }}>
+                          <img src="https://file.rendit.io/n/q5Axl43rqp5SyWyIcZJ1.png"
+                            alt="Send"
+                            style={{
+                              height: '25px',
+                              width: '25px',
+                            }}
+                          />
+                  </Button>
+                </ChatInputBox>
+              </form>
           </ChatBoxContainer>
             </TabPanel>
             </PreviewSectionContainer>
