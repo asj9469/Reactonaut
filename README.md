@@ -28,7 +28,7 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 
 ## Future Plans
 
-- Improve AI assistant speed
+- ~~Improve AI assistant speed~~
 - Implement prompt enhancing feature
 - Implement file access feature (work on files stored locally or on cloud)
 - Implement a more advanced editor
