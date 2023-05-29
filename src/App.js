@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { inject } from '@vercel/analytics';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-jsx';
 import 'ace-builds/src-noconflict/theme-twilight';
@@ -27,6 +28,8 @@ import { ThirdRectangle } from './view';
 import { LivePreviewContainer } from "./view";
 import { PreviewSectionContainer } from './view';
 import { ChatInputStyle } from './view';
+
+inject();
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
