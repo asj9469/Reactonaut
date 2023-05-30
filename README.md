@@ -38,4 +38,4 @@ Reactonaut also helps developers allocate more time to bigger ideas, such as UI 
 ## Credits
 The initial backend structure has been produced by [admineral](https://github.com/admineral).
 
-After our collaboration in an [AI Startup Hackathon](https://lablab.ai/event/ai-startup-hackathon-episode-3/reactonauts/reactonaut-ai-code-editor), Reactonaut was separated from his original project [Reactor](https://github.com/admineral/Reactor) with a new UI and is being developed as a stand-alone project.
+Reactonaut is the general/public version of his original project [Reactor](https://github.com/admineral/Reactor) with a new UI. It was developed during our collaboration in an [AI Startup Hackathon](https://lablab.ai/event/ai-startup-hackathon-episode-3/reactonauts/reactonaut-ai-code-editor) which we placed first in.
