@@ -19,6 +19,7 @@
     "@mui/material": "^5.13.0",
     "@mui/system": "^5.12.3",
     "clsx": "1.1.1",
+    "dotenv": "^16.1.4",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",

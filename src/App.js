@@ -10,23 +10,11 @@ import styled from 'styled-components';
 import './App.css'
 import TabPanel from './Tabs';
 import a11yProps from './Tabs';
-
 //import styled components from view
-import { ChatBox, ChatBoxContainer, ChatInputBox, HeaderContainer2, TabContainer, ViewContainerRoot } from "./view";
-import { HeaderContainer} from './view';
-import { LogoContainer } from './view';
-import { LogoText } from './view';
-import { LogoImage } from './view';
-import { CodeEditorRectangle } from './view';
-import { LiveCodeContainer } from "./view";
-import { FileNameContainer } from './view';
-import { FileNameInputStyle } from './view';
-import { FirstRectangle } from './view';
-import { SecondRectangle } from './view';
-import { ThirdRectangle } from './view';
-import { LivePreviewContainer } from "./view";
-import { PreviewSectionContainer } from './view';
-import { ChatInputStyle } from './view';
+
+import { ChatBox, ChatBoxContainer, ChatInputBox, HeaderContainer2, TabContainer, ViewContainerRoot, HeaderContainer, 
+        LogoContainer, LogoText, LogoImage, CodeEditorRectangle, LiveCodeContainer, FileNameContainer, FileNameInputStyle, 
+        FirstRectangle, SecondRectangle, ThirdRectangle, LivePreviewContainer, PreviewSectionContainer, ChatInputStyle } from "./view";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -116,18 +104,19 @@ function App() {
   };
  
   async function callChatGptApi(prompt){
-  // const callChatGptApi = async (prompt) => {
+
     try {
       const formattedPrompt = `I am using react-live with AceEditor to build a web application. My current code is:\n${code}\n\nUser: ${prompt}\n\nChatGPT, please provide me the code to achieve this, answer with full code:`;
-
-      const response = await fetch('https://api.pawan.krd/v1/completions', {
+      
+      console.log('Sending OpenAI request...');
+      const response = await fetch('https://api.cattogpt.repl.co/v1/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + API_KEY
         },
         body: JSON.stringify({
-          model: "text-davinci-003",
+          model: 'text-davinci-003',
           prompt: formattedPrompt,
           max_tokens: 2000,
           n: 1,
@@ -138,9 +127,9 @@ function App() {
           presence_penalty: 0,
         }),
       });
-    
+
       const data = await response.json();
-      
+        
       if (data.choices && data.choices.length > 0) {
         const chatGptResponse = data.choices[0].text.trim();
         setMessages(prevMessages => [...prevMessages, { sender: 'ChatGPT', text: chatGptResponse, showFullResponse: false }]);
@@ -161,7 +150,6 @@ function App() {
     setChatInput("");
     setIsWaitingForResponse(true);
     await callChatGptApi(chatInput);
-    
   };
   
   useEffect(() => {
@@ -371,8 +359,6 @@ function App() {
             </PreviewSectionContainer>
       </LiveProvider>
       </HeaderContainer2>
-    
-      
     </ViewContainerRoot>
     </div>
     </>
