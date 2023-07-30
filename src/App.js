@@ -109,7 +109,7 @@ function App() {
       const formattedPrompt = `I am using react-live with AceEditor to build a web application. My current code is:\n${code}\n\nUser: ${prompt}\n\nChatGPT, please provide me the code to achieve this, answer with full code:`;
       
       console.log('Sending OpenAI request...');
-      const response = await fetch('https://endpoint.cattogpt.repl.co/v1/completions', {
+      const response = await fetch('https://api.catto.codes/v1/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
