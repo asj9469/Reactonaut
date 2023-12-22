@@ -10,58 +10,20 @@ import styled from 'styled-components';
 import './App.css'
 import TabPanel from './Tabs';
 import a11yProps from './Tabs';
-//import styled components from view
+import {initialCode} from "./components/initialCode"
+import OpenAI from "openai";
 
+//import styled components from view
 import { ChatBox, ChatBoxContainer, ChatInputBox, HeaderContainer2, TabContainer, ViewContainerRoot, HeaderContainer, 
         LogoContainer, LogoText, LogoImage, CodeEditorRectangle, LiveCodeContainer, FileNameContainer, FileNameInputStyle, 
         FirstRectangle, SecondRectangle, ThirdRectangle, LivePreviewContainer, PreviewSectionContainer, ChatInputStyle } from "./view";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-
-const initialCode = `
-function LandingPage() {
-  const [buttonClicked, setButtonClicked] = useState(false);
-
-  const handleButtonClick = () => {
-    setButtonClicked(true);
-  };
-
-  const containerStyle = {
-    backgroundImage: 'linear-gradient(to right, #6a11cb, #2575fc)',
-    minHeight: 'calc(100vh - 200px)',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    padding: '2rem',
-    color: 'white',
-  };
-
-  const buttonStyle = {
-    background: 'white',
-    color: 'blue',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    marginTop: '1rem',
-  };
-
-  return (
-    <div style={containerStyle}>
-      <h1>Welcome to Our Website</h1>
-      <p>
-        We provide top-notch services and solutions for our customers. Explore our offerings and find the best fit for your needs!
-      </p>
-      <button onClick={handleButtonClick} style={buttonStyle}>
-        {buttonClicked ? 'Thanks for clicking!' : 'Learn More'}
-      </button>
-    </div>
-  );
-}
-`;
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
+const openai = new OpenAI({
+  apiKey: API_KEY,
+  organization: "org-jN6DqtCz7KJY9YVUjFL6slv2",
+  dangerouslyAllowBrowser: true,
+});
 
 function App() {
   const [code, setCode] = useState(initialCode);
@@ -73,11 +35,9 @@ function App() {
 
   //setup tabs for preview pane + Chat GPT screen
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
 
   const applyCode = (newCode) => {
   setPreviousCode(code);
@@ -106,38 +66,43 @@ function App() {
   async function callChatGptApi(prompt){
 
     try {
-      const formattedPrompt = `I am using react-live with AceEditor to build a web application. My current code is:\n${code}\n\nUser: ${prompt}\n\nChatGPT, please provide me the code to achieve this, answer with full code:`;
+      const formattedPrompt = `I am using react-live to build a web application. My current code is:\n${code}, and I want to achieve this: ${prompt}\n\n Please write a javascript react function. Do not add any additional explanations, I just want the full code that could be pasted in immediately into a code editor`;
       
       console.log('Sending OpenAI request...');
-      const response = await fetch('https://api.catto.codes/v1/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + API_KEY
-        },
-        body: JSON.stringify({
-          model: 'text-davinci-003',
-          prompt: formattedPrompt,
-          max_tokens: 2000,
-          n: 1,
-          stop: null,
-          temperature: 0.5,
-          top_p: 1,
-          frequency_penalty: 0,
-          presence_penalty: 0,
-        }),
+      const response = await openai.chat.completions.create({
+
+        messages:[
+          {
+            role: "system",
+            content: "you are a professional fullstack web developer who can assist people with your Javascript knowledge."
+          },
+          {role: "user", content: formattedPrompt},
+        ],
+        model: "gpt-3.5-turbo-1106",
+        max_tokens: 2000,
+        // response_format:{type:"json_object"},
       });
 
-      const data = await response.json();
-        
-      if (data.choices && data.choices.length > 0) {
-        const chatGptResponse = data.choices[0].text.trim();
+      console.log(response)
+
+      if (response.error) {
+        console.error('Error calling ChatGPT API', response.error);
+        setIsWaitingForResponse(false);
+        return;
+      }
+
+      if (response.choices && response.choices.length > 0) {
+        // const chatGptResponse = data.choices[0].text.trim();
+        const chatGptResponse = response.choices[0].message.content.trim();
+        console.log(chatGptResponse)
         setMessages(prevMessages => [...prevMessages, { sender: 'ChatGPT', text: chatGptResponse, showFullResponse: false }]);
         setIsWaitingForResponse(false);
       } else {
         console.error('Error calling ChatGPT API: invalid response format');
         setIsWaitingForResponse(false);
       }
+
+      
     } catch (error) {
       console.error('Error calling ChatGPT API:', error);
       setIsWaitingForResponse(false);
