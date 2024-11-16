@@ -105,7 +105,7 @@ function App() {
       
     } catch (error) {
       console.error('Error calling ChatGPT API:', error);
-      setIsWaitingForResponse(false);
+      setIsWaitingForResponse(false); 
     }
   };
 
